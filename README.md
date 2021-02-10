@@ -1,14 +1,16 @@
-gcloud-pubsub-emulator
+gcloud-pubsub-emulator ~ 
 ----------------------
-This repository contains the Docker configuration for Google's PubSub emulator. It's mainly the dockerization and documentation of https://github.com/prep/pubsubc 
+This repository is a fork of [marcelcorso/gcloud-pubsub-emulator](https://github.com/marcelcorso/gcloud-pubsub-emulator). It is used to create Docker images for Google's PubSub emulator. It's mainly the dockerization and documentation of [prep/pubsubc](https://github.com/prep/pubsubc).
 
 Installation
 ------------
-A pre-built Docker container is available for Docker Hub:
+Pre-built Docker images are available on Docker Hub:
 
 ```
-docker run --rm -ti -p 8681:8681 messagebird/gcloud-pubsub-emulator:latest
+docker run --rm -ti -p 8681:8681 tombailey256/gcloud-pubsub-emulator:latest
 ```
+
+Images are created weekly (tagged ```date '+%Y-%m-%d'```, i.e. [1969-07-20](https://www.nasa.gov/mission_pages/apollo/apollo11.html)) using Github actions to try to stay up to date with the latest gcloud-sdk and pubsub emulator. For that reason, it is recommended that you use a specific tag for your project and not latest.
 
 Or, you can build this repository yourself:
 
