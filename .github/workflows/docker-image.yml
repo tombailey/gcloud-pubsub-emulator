@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  schedule:
+    - cron: '0 0 * * mon'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login for registry
+      run: echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login -u tombailey256 --password-stdin
+      env:
+        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag tombailey256/gcloud-pubsub-emulator:$(date '+%Y-%m-%d')
+    - name: Push the docker image
+      run: docker push tombailey256/gcloud-pubsub-emulator:$(date '+%Y-%m-%d')
